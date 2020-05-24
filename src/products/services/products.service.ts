@@ -1,7 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Products, ProductsModel } from './produtcs.model';
+import {
+  Products,
+  ProductsModel,
+  createSelectNameQuery,
+  createSelectTagsQuery,
+} from './produtcs.model';
 
 @Injectable()
 export class ProductsService {
@@ -13,20 +18,20 @@ export class ProductsService {
   async findAll(name?: string, tag?: string): Promise<Array<Products>> {
     if (name && tag) {
       return this.productsModel.find({
-        name: { $regex: name, $options: 'i' },
-        tags: { $in: [tag] },
+        name: createSelectNameQuery(name),
+        tags: createSelectTagsQuery(tag),
       });
     }
 
     if (name) {
       return this.productsModel.find({
-        name: { $regex: name, $options: 'i' },
+        name: createSelectNameQuery(name),
       });
     }
 
     if (tag) {
       return this.productsModel.find({
-        tags: { $in: [tag] },
+        tags: createSelectTagsQuery(tag),
       });
     }
 
