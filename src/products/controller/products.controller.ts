@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Controller, Get, Header, Param, Query } from '@nestjs/common';
 import { ProductsOutPutDot } from '../dto/products-out-put-dot';
 import { ProductsService } from '../services/products.service';
 
@@ -7,6 +7,7 @@ export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
   @Get()
+  @Header('Cache-Control', 'public, max-age=300')
   async findAll(
     @Query('name') name: string,
     @Query('tag') tag: string,
@@ -22,6 +23,7 @@ export class ProductsController {
   }
 
   @Get(':id')
+  @Header('Cache-Control', 'public, max-age=300')
   async findById(@Param('id') id): Promise<ProductsOutPutDot> {
     const prod = await this.productsService.findByIndex(id);
     if (prod) {
