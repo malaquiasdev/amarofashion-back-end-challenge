@@ -1,9 +1,7 @@
-import { Test } from '@nestjs/testing';
 import * as mongoose from 'mongoose';
 import { ProductsService } from './products.service';
-import { Products, ProductsSchema } from './produtcs.model';
+import { ProductsSchema } from './produtcs.model';
 import * as MOCK_PRODUCTS_DATA from '../../../samples/products.json';
-import { async } from 'rxjs/internal/scheduler/async';
 
 describe('Products service', () => {
   const MOCKED_PRODUCTS_VALUE = MOCK_PRODUCTS_DATA.products;
