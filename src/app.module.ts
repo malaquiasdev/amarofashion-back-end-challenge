@@ -4,7 +4,7 @@ import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/amarofashion'),
+    MongooseModule.forRoot('mongodb://mongodb/amarofashion'),
     ProductsModule,
   ],
 })

@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  nodejs:
+    image: amarofashion-service-dev
+    build:
+      context: .
+      target: development
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_DB=URL='mongodb://mongodb/amarofashion'
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+    command: yarn start:dev
+
+  mongodb:
+    image: mongo:4.1.8-xenial
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+
+volumes:
+  dbdata:
