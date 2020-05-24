@@ -9,5 +9,4 @@ export class ProductsOutPutDot {
       this.tags = fields.tags || this.tags;
     }
   }
-  
 }
