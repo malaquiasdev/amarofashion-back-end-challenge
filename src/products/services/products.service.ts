@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {
+  tableName,
   Products,
   ProductsModel,
   createSelectNameQuery,
@@ -11,7 +12,7 @@ import {
 @Injectable()
 export class ProductsService {
   constructor(
-    @InjectModel('Products')
+    @InjectModel(tableName)
     private readonly productsModel: Model<ProductsModel>,
   ) {}
 

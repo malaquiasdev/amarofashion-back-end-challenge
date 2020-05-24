@@ -1,5 +1,7 @@
 import * as mongoose from 'mongoose';
 
+export const tableName = 'Products';
+
 export const ProductsSchema = new mongoose.Schema({
   index: Number,
   name: String,
