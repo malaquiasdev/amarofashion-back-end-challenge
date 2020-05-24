@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { ProductsOutPutDot } from './products-out-put-dot';
-import { ProductsService } from './products.service';
+import { ProductsOutPutDot } from '../dto/products-out-put-dot';
+import { ProductsService } from '../services/products.service';
 
 @Controller('products')
 export class ProductsController {
@@ -14,7 +14,7 @@ export class ProductsController {
     return (await this.productsService.findAll(name, tag)).map(
       prod =>
         new ProductsOutPutDot({
-          id: prod.id,
+          id: prod.index,
           name: prod.name,
           tags: prod.tags,
         }),
@@ -23,11 +23,14 @@ export class ProductsController {
 
   @Get(':id')
   async findById(@Param('id') id): Promise<ProductsOutPutDot> {
-    const prod = await this.productsService.findById(id);
-    return new ProductsOutPutDot({
-      id: prod.id,
-      name: prod.name,
-      tags: prod.tags,
-    });
+    const prod = await this.productsService.findByIndex(id);
+    if (prod) {
+      return new ProductsOutPutDot({
+        id: prod.index,
+        name: prod.name,
+        tags: prod.tags,
+      });
+    }
+    return new ProductsOutPutDot();
   }
 }
