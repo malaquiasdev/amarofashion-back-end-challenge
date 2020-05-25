@@ -1,3 +1,5 @@
+# Amaro Fashion Back-end Challenge
+
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Amaro_logo.png" width="320" alt="Amaro Fashion Logo" />
 </p>
@@ -97,4 +99,4 @@ If you want to contact me you can reach me at <mateusmalaquiasdev@outlook.com>.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project uses the following license: [MIT licensed](LICENSE).
