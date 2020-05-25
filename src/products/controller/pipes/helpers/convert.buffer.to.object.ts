@@ -3,7 +3,19 @@ import { Products } from '../../../produtcs.model';
 import { isApplicationJSON, isApplicationXML } from './validate.file.type';
 
 function convertApplicationJsonBufferToObject(value: any): Array<Products> {
-  return JSON.parse(value.buffer.toString());
+  const produtcs: Products[] = [];
+  const rawData = JSON.parse(value.buffer.toString());
+
+  rawData.products.forEach(item => {
+    const newProduct: Products = {
+      index: item.id,
+      name: item.name,
+      tags: item.tags,
+    };
+    produtcs.push(newProduct);
+  });
+
+  return produtcs;
 }
 
 function convertApplicationXMLBufferToObject(value: any): Array<Products> {
