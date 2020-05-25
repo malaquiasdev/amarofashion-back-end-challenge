@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import {
@@ -15,6 +15,18 @@ export class ProductsService {
     @InjectModel(tableName)
     private readonly productsModel: Model<ProductsModel>,
   ) {}
+
+  async insertMany(produtcs: Array<Products>): Promise<boolean> {
+    if (!produtcs) {
+      return false;
+    }
+    try {
+      await this.productsModel.insertMany(produtcs);
+    } catch (error) {
+      Logger.error('Someting is wrong', error);
+    }
+    return true;
+  }
 
   async findAll(name?: string, tag?: string): Promise<Array<Products>> {
     if (name && tag) {
