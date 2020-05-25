@@ -4,8 +4,8 @@ import {
   BadRequestException,
   ArgumentMetadata,
 } from '@nestjs/common';
-import { isApplicationJSON, isApplicationXML } from './validate.file.type';
-import { convertBufferToObject } from './convert.buffer.to.object';
+import { isApplicationJSON, isApplicationXML } from './helpers/validate.file.type';
+import { convertBufferToObject } from './helpers/convert.buffer.to.object';
 
 @Injectable()
 export class ProductsUploadPipe implements PipeTransform {

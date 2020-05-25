@@ -1,5 +1,5 @@
 import * as xml2js from 'xml2js';
-import { Products } from '../../produtcs.model';
+import { Products } from '../../../produtcs.model';
 import { isApplicationJSON, isApplicationXML } from './validate.file.type';
 
 function convertApplicationJsonBufferToObject(value: any): Array<Products> {
