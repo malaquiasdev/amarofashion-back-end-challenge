@@ -21,10 +21,10 @@ export class ProductsController {
   @Post('upload')
   @HttpCode(202)
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@UploadedFile() file) {
+  async uploadFile(@UploadedFile() file): Promise<any> {
     const products = new ProductsUploadPipe().transform(file, null);
-    const res = await this.productsService.insertMany(products);
-    return res;
+    this.productsService.insertMany(products);
+    return { processing: true };
   }
 
   @Get()
