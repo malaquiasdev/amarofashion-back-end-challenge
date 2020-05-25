@@ -7,7 +7,7 @@ import {
   ProductsModel,
   createSelectNameQuery,
   createSelectTagsQuery,
-} from './produtcs.model';
+} from '../produtcs.model';
 
 @Injectable()
 export class ProductsService {

@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import { ProductsController } from './products.controller';
 import { ProductsService } from '../services/products.service';
-import { Products, ProductsSchema } from '../services/produtcs.model';
+import { Products, ProductsSchema } from '../produtcs.model';
 import { ProductsOutPutDot } from '../dto/products-out-put-dot';
 
 describe('ProductsController', () => {

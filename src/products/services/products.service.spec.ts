@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import { ProductsService } from './products.service';
-import { ProductsSchema } from './produtcs.model';
+import { ProductsSchema } from '../produtcs.model';
 import * as MOCK_PRODUCTS_DATA from '../../../samples/products.json';
 
 describe('Products service', () => {

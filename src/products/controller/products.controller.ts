@@ -1,10 +1,30 @@
-import { Controller, Get, Header, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Header,
+  Param,
+  Query,
+  Post,
+  UseInterceptors,
+  UploadedFile,
+  HttpCode,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { ProductsOutPutDot } from '../dto/products-out-put-dot';
 import { ProductsService } from '../services/products.service';
+import { ProductsUploadPipe } from './pipes/products.upload.pipe';
 
 @Controller('products')
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
+
+  @Post('upload')
+  @HttpCode(202)
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file) {
+    const products = new ProductsUploadPipe().transform(file, null);
+    return products;
+  }
 
   @Get()
   @Header('Cache-Control', 'public, max-age=300')
