@@ -11,7 +11,7 @@ services:
     env_file: .env
     environment:
       - MONGO_DB_URL='mongodb://mongodb/amarofashion'
-      - RABBIT_MQ_URL='amqp://localhost:5672'
+      - RABBIT_MQ_URL='amqp://guest:guest@rabbitmq:5672'
     ports:
       - '3000:3000'
     volumes:
@@ -38,7 +38,9 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - '5672:567'
+      - '15672:15672'
+      - '5672:5672'
+      - '25676:25676'
     volumes:
       - dbdata:/data/rabbitmq
 

@@ -18,6 +18,16 @@ import { ProductsUploadPipe } from './pipes/products.upload.pipe';
 export class ProductsController {
   constructor(private productsService: ProductsService) {}
 
+  @Get('rabbit/send')
+  async rabInser(): Promise<any> {
+    return this.productsService.rabInser();
+  }
+
+  @Get('rabbit/consumer')
+  async rabCon(): Promise<any> {
+    return this.productsService.rabCon();
+  }
+
   @Post('upload')
   @HttpCode(202)
   @UseInterceptors(FileInterceptor('file'))
@@ -55,15 +65,5 @@ export class ProductsController {
       });
     }
     return new ProductsOutPutDot();
-  }
-
-  @Get('rabbit/send')
-  async rabInser(): Promise<any> {
-    return this.productsService.rabInser();
-  }
-
-  @Get('rabbit/consumer')
-  async rabCon(): Promise<any> {
-    return this.productsService.rabCon();
   }
 }

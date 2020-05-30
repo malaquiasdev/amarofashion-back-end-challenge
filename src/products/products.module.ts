@@ -8,7 +8,7 @@ import { ProductsSchema, tableName } from './produtcs.model';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: tableName, schema: ProductsSchema }]),
-    RabittMqModule.connect('amqp://guest:guest@http://localhost:15672'),
+    RabittMqModule.connect('amqp://guest:guest@rabbitmq:5672'),
   ],
   controllers: [ProductsController],
   providers: [ProductsService],
