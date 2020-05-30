@@ -38,7 +38,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - '5672:5672'
+      - '5672:567'
     volumes:
       - dbdata:/data/rabbitmq
 

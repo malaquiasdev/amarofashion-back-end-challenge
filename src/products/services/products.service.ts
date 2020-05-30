@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { RabittMqService } from '../../modules/rabitt-mq/rabitt-mq.service';
 import {
   tableName,
   Products,
@@ -14,7 +15,17 @@ export class ProductsService {
   constructor(
     @InjectModel(tableName)
     private readonly productsModel: Model<ProductsModel>,
+    private readonly rabittMqService: RabittMqService,
   ) {}
+
+  async rabInser() {
+    this.rabittMqService.send('teste', 'testando');
+    return true;
+  }
+
+  async rabCon() {
+    return this.rabittMqService.consumer('teste');
+  }
 
   async insertMany(produtcs: Array<Products>): Promise<boolean> {
     if (!produtcs) {

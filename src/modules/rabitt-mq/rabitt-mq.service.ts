@@ -11,7 +11,7 @@ export class RabittMqService {
       .error(err => Logger.error('RabbitMQ connection error: ', err));
   }
 
-  async send(queueName: string, message: any) {
+  send(queueName: string, message: any) {
     this.channel.sendToQueue(queueName, Buffer.from(message));
     return true;
   }

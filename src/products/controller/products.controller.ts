@@ -56,4 +56,14 @@ export class ProductsController {
     }
     return new ProductsOutPutDot();
   }
+
+  @Get('rabbit/send')
+  async rabInser(): Promise<any> {
+    return this.productsService.rabInser();
+  }
+
+  @Get('rabbit/consumer')
+  async rabCon(): Promise<any> {
+    return this.productsService.rabCon();
+  }
 }
